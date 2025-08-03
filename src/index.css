@@ -2,41 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Luxury Real Estate Design System - HSL Colors Only */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Luxury Color Palette */
+    --background: 32 20% 97%;
+    --foreground: 28 25% 8%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 32 20% 98%;
+    --card-foreground: 28 25% 8%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 32 20% 98%;
+    --popover-foreground: 28 25% 8%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Luxury Gold Primary */
+    --primary: 45 85% 47%;
+    --primary-foreground: 32 20% 97%;
+    --primary-glow: 45 85% 65%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Warm Charcoal Secondary */
+    --secondary: 28 15% 15%;
+    --secondary-foreground: 32 20% 97%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Soft Beige Muted */
+    --muted: 35 15% 92%;
+    --muted-foreground: 28 20% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Elegant Accent */
+    --accent: 42 78% 60%;
+    --accent-foreground: 28 25% 8%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 32 20% 97%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 35 12% 88%;
+    --input: 35 12% 88%;
+    --ring: 45 85% 47%;
 
-    --radius: 0.5rem;
+    /* Luxury Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(45 85% 47% / 0.9), hsl(42 78% 60% / 0.8));
+    --gradient-card: linear-gradient(180deg, hsl(32 20% 98%), hsl(35 15% 95%));
+    --gradient-overlay: linear-gradient(180deg, transparent 0%, hsl(28 25% 8% / 0.7) 100%);
+
+    /* Luxury Shadows */
+    --shadow-luxury: 0 20px 60px -10px hsl(45 85% 47% / 0.15);
+    --shadow-elegant: 0 10px 40px -5px hsl(28 25% 8% / 0.1);
+    --shadow-glow: 0 0 30px hsl(45 85% 47% / 0.3);
+
+    /* Premium Spacing */
+    --spacing-luxury: 6rem;
+    --spacing-section: 4rem;
+
+    /* Smooth Transitions */
+    --transition-luxury: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +122,102 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+}
+
+/* Luxury Component Styles */
+@layer components {
+  .luxury-section {
+    @apply py-[var(--spacing-section)] px-6 lg:px-8;
+  }
+
+  .luxury-container {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+
+  .card-gradient {
+    background: var(--gradient-card);
+  }
+
+  .overlay-gradient {
+    background: var(--gradient-overlay);
+  }
+
+  .shadow-luxury {
+    box-shadow: var(--shadow-luxury);
+  }
+
+  .shadow-elegant {
+    box-shadow: var(--shadow-elegant);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .transition-luxury {
+    transition: var(--transition-luxury);
+  }
+
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  /* Property Card Slider Navigation */
+  .property-slider .swiper-button-next,
+  .property-slider .swiper-button-prev {
+    @apply text-primary bg-background/80 backdrop-blur-sm rounded-full w-10 h-10 mt-0;
+    box-shadow: var(--shadow-elegant);
+  }
+
+  .property-slider .swiper-button-next:after,
+  .property-slider .swiper-button-prev:after {
+    @apply text-sm font-bold;
+  }
+
+  .property-slider .swiper-pagination-bullet {
+    @apply bg-background/60 opacity-100;
+  }
+
+  .property-slider .swiper-pagination-bullet-active {
+    @apply bg-primary;
+  }
+
+  /* Scroll Animations */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: var(--transition-luxury);
+  }
+
+  .fade-up.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fade-in {
+    opacity: 0;
+    transition: var(--transition-smooth);
+  }
+
+  .fade-in.animate {
+    opacity: 1;
+  }
+
+  .scale-in {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: var(--transition-luxury);
+  }
+
+  .scale-in.animate {
+    opacity: 1;
+    transform: scale(1);
   }
 }
