@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindAnimate from "tailwindcss-animate";
 
 export default {
 	darkMode: ["class"],
@@ -67,6 +68,16 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Luxury Color Palette
+				luxury: {
+					gold: 'hsl(var(--luxury-gold))',
+					burgundy: 'hsl(var(--luxury-burgundy))',
+					cream: 'hsl(var(--luxury-cream))',
+					charcoal: 'hsl(var(--luxury-charcoal))',
+					amber: 'hsl(var(--luxury-amber))',
+					bronze: 'hsl(var(--luxury-bronze))',
+					silver: 'hsl(var(--luxury-silver))',
 				}
 			},
 			borderRadius: {
@@ -98,5 +109,5 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [tailwindAnimate],
 } satisfies Config;

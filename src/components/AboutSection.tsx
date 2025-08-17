@@ -1,8 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Award, Users, Building, TrendingUp } from 'lucide-react';
+import { Award, Users, Building, TrendingUp, Crown, Star } from 'lucide-react';
 import { Button } from './ui/button';
+import whatsappImage48 from '../assets/WhatsApp Image 2025-08-13 at 10.12.48.jpeg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -72,70 +73,80 @@ const AboutSection = () => {
   }, []);
 
   const stats = [
-    { icon: Building, value: 25, label: "Premium Projects", suffix: "+" },
-    { icon: Users, value: 2500, label: "Happy Families", suffix: "+" },
-    { icon: Award, value: 15, label: "Years Experience", suffix: "" },
-    { icon: TrendingUp, value: 98, label: "Customer Satisfaction", suffix: "%" }
+    { icon: Building, value: 25, label: "Luxury Bungalows", suffix: "+", color: "luxury-gold" },
+    { icon: Users, value: 2500, label: "Happy Families", suffix: "+", color: "luxury-amber" },
+    { icon: Award, value: 15, label: "Years Excellence", suffix: "", color: "luxury-burgundy" },
+    { icon: TrendingUp, value: 98, label: "Customer Satisfaction", suffix: "%", color: "luxury-gold" }
   ];
 
   return (
-    <section ref={sectionRef} className="luxury-section bg-muted/30">
+    <section ref={sectionRef} className="luxury-section bg-gradient-to-br from-luxury-cream/20 via-background to-luxury-cream/10">
       <div className="luxury-container">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Content */}
           <div ref={contentRef}>
+            <div className="inline-flex items-center gap-2 bg-luxury-gold/10 text-luxury-gold px-4 py-2 rounded-full mb-6 border border-luxury-gold/20">
+              <Crown className="w-5 h-5" />
+              <span className="text-sm font-medium">Premium Developer</span>
+            </div>
+            
             <h2 className="text-4xl md:text-5xl font-bold font-display text-foreground mb-6">
-              Crafting Dreams Into
-              <span className="block text-primary">Reality Since 2009</span>
+              Crafting Luxury 5 BHK
+              <span className="block text-luxury-gold">Bungalows Since 2009</span>
             </h2>
             
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
               With over a decade of excellence in luxury real estate development, 
               we've redefined urban living through innovative architecture, 
-              premium amenities, and uncompromising quality.
+              premium amenities, and uncompromising quality. Our 5 BHK bungalows 
+              represent the pinnacle of luxury living.
             </p>
 
             <div className="space-y-4 mb-8">
               <div className="flex items-start space-x-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-3" />
+                <div className="w-2 h-2 bg-luxury-gold rounded-full mt-3" />
                 <p className="text-muted-foreground">
                   Award-winning architectural designs that blend modern aesthetics with functional excellence
                 </p>
               </div>
               <div className="flex items-start space-x-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-3" />
+                <div className="w-2 h-2 bg-luxury-amber rounded-full mt-3" />
                 <p className="text-muted-foreground">
                   Sustainable construction practices with premium materials and finishes
                 </p>
               </div>
               <div className="flex items-start space-x-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-3" />
+                <div className="w-2 h-2 bg-luxury-burgundy rounded-full mt-3" />
                 <p className="text-muted-foreground">
                   Strategic locations with excellent connectivity and growth potential
                 </p>
               </div>
             </div>
 
-            <Button size="lg" className="shadow-glow hover:shadow-luxury">
+            <Button size="lg" className="btn-luxury-primary">
               Learn More About Us
             </Button>
           </div>
 
           {/* Image */}
           <div ref={imageRef} className="relative">
-            <div className="card-gradient rounded-3xl p-8 shadow-luxury">
-              <div className="aspect-square bg-muted rounded-2xl flex items-center justify-center mb-8">
-                <Building className="w-24 h-24 text-primary" />
+            <div className="card-luxury rounded-3xl p-8">
+              <div className="aspect-square bg-luxury-cream rounded-2xl flex items-center justify-center mb-8 overflow-hidden border border-luxury-gold/20">
+                <img 
+                  src={whatsappImage48}
+                  alt="Luxury 5 BHK Bungalow Showcase"
+                  className="w-full h-full object-cover rounded-2xl"
+                />
               </div>
               
               {/* Stats */}
               <div ref={statsRef} className="grid grid-cols-2 gap-6">
                 {stats.map((stat, index) => (
                   <div key={index} className="text-center">
-                    <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-xl mb-3 mx-auto">
-                      <stat.icon className="w-6 h-6 text-primary" />
+                    <div className={`flex items-center justify-center w-12 h-12 bg-${stat.color}/10 rounded-xl mb-3 mx-auto border border-${stat.color}/20`}>
+                      <stat.icon className={`w-6 h-6 text-${stat.color}`} />
                     </div>
-                    <div className="text-2xl font-bold text-foreground">
+                    <div className="text-2xl font-bold text-luxury-charcoal">
                       <span 
                         className="stat-number" 
                         data-value={stat.value}
@@ -144,7 +155,7 @@ const AboutSection = () => {
                       </span>
                       {stat.suffix}
                     </div>
-                    <p className="text-sm text-muted-foreground">{stat.label}</p>
+                    <p className="text-sm text-luxury-burgundy font-medium">{stat.label}</p>
                   </div>
                 ))}
               </div>

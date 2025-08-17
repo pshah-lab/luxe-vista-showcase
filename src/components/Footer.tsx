@@ -36,10 +36,10 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-2 mb-6">
               <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-xl">LE</span>
+                <span className="text-primary-foreground font-bold text-xl">AB</span>
               </div>
               <span className="font-display font-bold text-xl">
-                Luxury Estates
+              ABHINANDAN MOUNTREEA
               </span>
             </div>
             <p className="text-secondary-foreground/80 mb-6 leading-relaxed">

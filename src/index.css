@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    /* Luxury Color Palette */
+    /* Enhanced Luxury Color Palette for 5 BHK Bungalows */
     --background: 32 20% 97%;
     --foreground: 28 25% 8%;
 
@@ -16,21 +16,21 @@
     --popover: 32 20% 98%;
     --popover-foreground: 28 25% 8%;
 
-    /* Luxury Gold Primary */
-    --primary: 45 85% 47%;
+    /* Premium Gold Primary - Deeper and Richer */
+    --primary: 42 85% 45%;
     --primary-foreground: 32 20% 97%;
-    --primary-glow: 45 85% 65%;
+    --primary-glow: 42 85% 60%;
 
-    /* Warm Charcoal Secondary */
-    --secondary: 28 15% 15%;
+    /* Rich Burgundy Secondary - Ultra Luxury */
+    --secondary: 350 45% 18%;
     --secondary-foreground: 32 20% 97%;
 
-    /* Soft Beige Muted */
+    /* Sophisticated Beige Muted */
     --muted: 35 15% 92%;
     --muted-foreground: 28 20% 45%;
 
-    /* Elegant Accent */
-    --accent: 42 78% 60%;
+    /* Elegant Accent - Warm Amber */
+    --accent: 38 78% 55%;
     --accent-foreground: 28 25% 8%;
 
     --destructive: 0 84% 60%;
@@ -38,17 +38,19 @@
 
     --border: 35 12% 88%;
     --input: 35 12% 88%;
-    --ring: 45 85% 47%;
+    --ring: 42 85% 45%;
 
-    /* Luxury Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(45 85% 47% / 0.9), hsl(42 78% 60% / 0.8));
+    /* Enhanced Luxury Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(42 85% 45% / 0.95), hsl(38 78% 55% / 0.9), hsl(350 45% 18% / 0.8));
     --gradient-card: linear-gradient(180deg, hsl(32 20% 98%), hsl(35 15% 95%));
-    --gradient-overlay: linear-gradient(180deg, transparent 0%, hsl(28 25% 8% / 0.7) 100%);
+    --gradient-overlay: linear-gradient(180deg, transparent 0%, hsl(28 25% 8% / 0.8) 100%);
+    --gradient-luxury: linear-gradient(135deg, hsl(42 85% 45% / 0.1), hsl(38 78% 55% / 0.05), hsl(350 45% 18% / 0.02));
 
-    /* Luxury Shadows */
-    --shadow-luxury: 0 20px 60px -10px hsl(45 85% 47% / 0.15);
-    --shadow-elegant: 0 10px 40px -5px hsl(28 25% 8% / 0.1);
-    --shadow-glow: 0 0 30px hsl(45 85% 47% / 0.3);
+    /* Premium Luxury Shadows */
+    --shadow-luxury: 0 25px 70px -15px hsl(42 85% 45% / 0.2);
+    --shadow-elegant: 0 15px 50px -10px hsl(28 25% 8% / 0.15);
+    --shadow-glow: 0 0 40px hsl(42 85% 45% / 0.4);
+    --shadow-premium: 0 30px 80px -20px hsl(350 45% 18% / 0.25);
 
     /* Premium Spacing */
     --spacing-luxury: 6rem;
@@ -60,20 +62,22 @@
 
     --radius: 0.75rem;
 
+    /* Additional Luxury Colors */
+    --luxury-gold: 42 85% 45%;
+    --luxury-burgundy: 350 45% 18%;
+    --luxury-cream: 35 15% 95%;
+    --luxury-charcoal: 28 25% 8%;
+    --luxury-amber: 38 78% 55%;
+    --luxury-bronze: 30 60% 35%;
+    --luxury-silver: 220 15% 85%;
+
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -87,16 +91,16 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
+    --primary: 42 85% 45%;
     --primary-foreground: 222.2 47.4% 11.2%;
 
-    --secondary: 217.2 32.6% 17.5%;
+    --secondary: 350 45% 18%;
     --secondary-foreground: 210 40% 98%;
 
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 217.2 32.6% 17.5%;
+    --accent: 38 78% 55%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 62.8% 30.6%;
@@ -104,7 +108,8 @@
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --ring: 42 85% 45%;
+    
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -127,7 +132,7 @@
   }
 }
 
-/* Luxury Component Styles */
+/* Enhanced Luxury Component Styles */
 @layer components {
   .luxury-section {
     @apply py-[var(--spacing-section)] px-6 lg:px-8;
@@ -149,6 +154,10 @@
     background: var(--gradient-overlay);
   }
 
+  .luxury-gradient {
+    background: var(--gradient-luxury);
+  }
+
   .shadow-luxury {
     box-shadow: var(--shadow-luxury);
   }
@@ -161,12 +170,46 @@
     box-shadow: var(--shadow-glow);
   }
 
+  .shadow-premium {
+    box-shadow: var(--shadow-premium);
+  }
+
   .transition-luxury {
     transition: var(--transition-luxury);
   }
 
   .transition-smooth {
     transition: var(--transition-smooth);
+  }
+
+  /* Luxury Text Colors */
+  .text-luxury-gold {
+    color: hsl(var(--luxury-gold));
+  }
+
+  .text-luxury-burgundy {
+    color: hsl(var(--luxury-burgundy));
+  }
+
+  .text-luxury-amber {
+    color: hsl(var(--luxury-amber));
+  }
+
+  /* Luxury Background Colors */
+  .bg-luxury-gold {
+    background-color: hsl(var(--luxury-gold));
+  }
+
+  .bg-luxury-burgundy {
+    background-color: hsl(var(--luxury-burgundy));
+  }
+
+  .bg-luxury-cream {
+    background-color: hsl(var(--luxury-cream));
+  }
+
+  .bg-luxury-charcoal {
+    background-color: hsl(var(--luxury-charcoal));
   }
 
   /* Property Card Slider Navigation */
@@ -219,5 +262,32 @@
   .scale-in.animate {
     opacity: 1;
     transform: scale(1);
+  }
+
+  /* Luxury Button Styles */
+  .btn-luxury-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300;
+    box-shadow: var(--shadow-luxury);
+  }
+
+  .btn-luxury-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/90 transition-all duration-300;
+    box-shadow: var(--shadow-elegant);
+  }
+
+  .btn-luxury-outline {
+    @apply border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300;
+  }
+
+  /* Luxury Card Styles */
+  .card-luxury {
+    @apply bg-card border border-border rounded-lg p-6;
+    box-shadow: var(--shadow-elegant);
+    transition: var(--transition-smooth);
+  }
+
+  .card-luxury:hover {
+    box-shadow: var(--shadow-luxury);
+    transform: translateY(-2px);
   }
 }

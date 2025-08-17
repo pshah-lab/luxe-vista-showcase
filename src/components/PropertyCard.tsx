@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-import { MapPin, Bed, Bath, Square, Calendar, Star } from 'lucide-react';
+import { MapPin, Bed, Bath, Square, Calendar, Star, Crown } from 'lucide-react';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 
@@ -45,9 +45,9 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
   };
 
   return (
-    <div className="card-gradient rounded-2xl overflow-hidden shadow-luxury hover:shadow-glow transition-luxury group">
-      {/* Image Slider */}
-      <div className="relative h-64 overflow-hidden">
+    <div className="card-luxury rounded-3xl overflow-hidden group min-h-[700px]">
+      {/* Image Slider - Increased Height */}
+      <div className="relative h-80 overflow-hidden">
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           navigation
@@ -67,10 +67,10 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
                     onError={() => handleImageError(index)}
                   />
                 ) : (
-                  <div className="w-full h-full bg-muted flex items-center justify-center">
-                    <div className="text-center text-muted-foreground">
-                      <Square className="w-12 h-12 mx-auto mb-2" />
-                      <p className="text-sm">Property Image</p>
+                  <div className="w-full h-full bg-luxury-cream flex items-center justify-center">
+                    <div className="text-center text-luxury-charcoal">
+                      <Square className="w-16 h-16 mx-auto mb-3" />
+                      <p className="text-base">Property Image</p>
                     </div>
                   </div>
                 )}
@@ -80,76 +80,83 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
           ))}
         </Swiper>
 
-        {/* Badges */}
-        <div className="absolute top-4 left-4 flex flex-col gap-2 z-10">
+        {/* Badges - Increased Size */}
+        <div className="absolute top-6 left-6 flex flex-col gap-3 z-10">
           {property.featured && (
-            <Badge className="bg-primary text-primary-foreground shadow-glow">
-              <Star className="w-3 h-3 mr-1" />
+            <Badge className="bg-luxury-gold text-luxury-charcoal shadow-glow border-0 px-4 py-2 text-sm">
+              <Crown className="w-4 h-4 mr-2" />
               Featured
             </Badge>
           )}
           {property.status && (
-            <Badge variant={getStatusBadgeVariant(property.status)} className="shadow-elegant">
+            <Badge variant={getStatusBadgeVariant(property.status)} className="shadow-elegant border-0 px-4 py-2 text-sm">
               {property.status}
             </Badge>
           )}
         </div>
 
-        {/* Price */}
-        <div className="absolute bottom-4 left-4 z-10">
-          <div className="bg-background/90 backdrop-blur-sm rounded-lg px-3 py-2">
-            <span className="text-lg font-bold text-primary">{property.price}</span>
+        {/* Price - Increased Size */}
+        <div className="absolute bottom-6 left-6 z-10">
+          <div className="bg-luxury-charcoal/95 backdrop-blur-sm rounded-xl px-5 py-4 border border-luxury-gold/30">
+            <span className="text-xl font-bold text-luxury-gold">{property.price}</span>
+          </div>
+        </div>
+
+        {/* BHK Badge - Increased Size */}
+        <div className="absolute top-6 right-6 z-10">
+          <div className="bg-luxury-burgundy/90 backdrop-blur-sm rounded-xl px-4 py-3 border border-luxury-burgundy/30">
+            <span className="text-base font-bold text-white">{property.bedrooms} BHK</span>
           </div>
         </div>
       </div>
 
-      {/* Content */}
-      <div className="p-6">
-        <div className="mb-4">
-          <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-smooth">
+      {/* Content - Increased Padding and Font Sizes */}
+      <div className="p-8 bg-gradient-to-br from-white to-luxury-cream/30">
+        <div className="mb-6">
+          <h3 className="text-2xl font-bold text-luxury-charcoal mb-3 group-hover:text-luxury-gold transition-smooth">
             {property.title}
           </h3>
-          <div className="flex items-center text-muted-foreground mb-3">
-            <MapPin className="w-4 h-4 mr-1" />
-            <span className="text-sm">{property.location}</span>
+          <div className="flex items-center text-luxury-burgundy mb-4">
+            <MapPin className="w-5 h-5 mr-2" />
+            <span className="text-base font-medium">{property.location}</span>
           </div>
         </div>
 
-        {/* Property Details */}
-        <div className="grid grid-cols-3 gap-4 mb-6 text-sm">
-          <div className="flex items-center text-muted-foreground">
-            <Bed className="w-4 h-4 mr-1" />
+        {/* Property Details - Increased Size */}
+        <div className="grid grid-cols-3 gap-6 mb-8 text-base">
+          <div className="flex items-center text-luxury-charcoal">
+            <Bed className="w-5 h-5 mr-2 text-luxury-gold" />
             <span>{property.bedrooms} BHK</span>
           </div>
-          <div className="flex items-center text-muted-foreground">
-            <Bath className="w-4 h-4 mr-1" />
+          <div className="flex items-center text-luxury-charcoal">
+            <Bath className="w-5 h-5 mr-2 text-luxury-amber" />
             <span>{property.bathrooms} Bath</span>
           </div>
-          <div className="flex items-center text-muted-foreground">
-            <Square className="w-4 h-4 mr-1" />
+          <div className="flex items-center text-luxury-charcoal">
+            <Square className="w-5 h-5 mr-2 text-luxury-burgundy" />
             <span>{property.area}</span>
           </div>
         </div>
 
-        {/* Possession & Rating */}
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center text-sm text-muted-foreground">
-            <Calendar className="w-4 h-4 mr-1" />
+        {/* Possession & Rating - Increased Size */}
+        <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center text-base text-luxury-charcoal">
+            <Calendar className="w-5 h-5 mr-2 text-luxury-amber" />
             <span>{property.possession}</span>
           </div>
           {property.rating && (
             <div className="flex items-center">
-              <Star className="w-4 h-4 text-primary fill-current mr-1" />
-              <span className="text-sm font-medium">{property.rating}</span>
+              <Star className="w-5 h-5 text-luxury-gold fill-current mr-2" />
+              <span className="text-base font-medium text-luxury-charcoal">{property.rating}</span>
             </div>
           )}
         </div>
 
-        {/* Action Buttons */}
-        <div className="flex gap-3">
+        {/* Action Buttons - Increased Size */}
+        <div className="flex gap-4">
           <Button 
             asChild 
-            className="flex-1 shadow-glow hover:shadow-luxury"
+            className="btn-luxury-primary flex-1 text-base py-3"
           >
             <Link to={`/projects/${property.id}`}>
               View Details
@@ -157,8 +164,8 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
           </Button>
           <Button 
             variant="outline" 
-            size="sm"
-            className="px-4 hover:bg-primary hover:text-primary-foreground transition-smooth"
+            size="default"
+            className="btn-luxury-outline px-6 py-3 text-base"
           >
             Enquire
           </Button>
