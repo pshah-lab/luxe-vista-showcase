@@ -7,7 +7,7 @@ const HeroSection = lazy(() => import('@/components/HeroSection'));
 const AboutSection = lazy(() => import('@/components/AboutSection'));
 const TechMarquee = lazy(() => import('@/components/TechMarquee'));
 const GallerySection = lazy(() => import('@/components/GallerySection'));
-const LuxuryColorShowcase = lazy(() => import('@/components/LuxuryColorShowcase'));
+
 
 const Index = () => {
   return (
