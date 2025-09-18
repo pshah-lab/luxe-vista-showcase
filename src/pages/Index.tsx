@@ -3,7 +3,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 const HeroSection = lazy(() => import('@/components/HeroSection'));
-const FeaturedProjects = lazy(() => import('@/components/FeaturedProjects'));
+
 const AboutSection = lazy(() => import('@/components/AboutSection'));
 const TechMarquee = lazy(() => import('@/components/TechMarquee'));
 const GallerySection = lazy(() => import('@/components/GallerySection'));
