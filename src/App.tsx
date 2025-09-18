@@ -27,15 +27,39 @@ const App = () => {
         <Toaster />
         <Sonner />
         {showSplash ? (
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh" }}>
-            <img src={Ablogo} alt="Abhinandan logo loading" style={{ width: 140, height: 140, opacity: 1, borderRadius: 16 }} />
+          // Splash screen (first 2 seconds)
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              minHeight: "100vh",
+            }}
+          >
+            <img
+              src={Ablogo}
+              alt="Abhinandan logo loading"
+              style={{ width: 140, height: 140, opacity: 1, borderRadius: 16 }}
+            />
           </div>
         ) : (
           <BrowserRouter>
             <Suspense
               fallback={
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "60vh" }}>
-                  <img src={Ablogo} alt="Abhinandan logo loading" style={{ width: 140, height: 140, opacity: 1, borderRadius: 16 }} />
+                // Keep fallback consistent with splash
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    minHeight: "100vh",
+                  }}
+                >
+                  <img
+                    src={Ablogo}
+                    alt="Abhinandan logo loading"
+                    style={{ width: 140, height: 140, opacity: 1, borderRadius: 16 }}
+                  />
                 </div>
               }
             >

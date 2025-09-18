@@ -4,11 +4,9 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 const HeroSection = lazy(() => import('@/components/HeroSection'));
-
 const AboutSection = lazy(() => import('@/components/AboutSection'));
 const TechMarquee = lazy(() => import('@/components/TechMarquee'));
 const GallerySection = lazy(() => import('@/components/GallerySection'));
-
 
 const Index = () => {
   return (
@@ -17,13 +15,24 @@ const Index = () => {
       <main>
         <Suspense
           fallback={
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '60vh' }}>
-              <img src={Ablogo} alt="Abhinandan logo loading" style={{ width: 140, height: 140, opacity: 1, borderRadius: 16 }} />
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                minHeight: '100vh', // ✅ match splash screen
+              }}
+            >
+              <img
+                src={Ablogo}
+                alt="Abhinandan logo loading"
+                style={{ width: 140, height: 140, opacity: 1, borderRadius: 16 }}
+              />
             </div>
           }
         >
           <HeroSection />
-          <TechMarquee/>
+          <TechMarquee />
           <AboutSection />
           <GallerySection />
         </Suspense>
