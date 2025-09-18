@@ -4,10 +4,13 @@ import { Menu, X, Phone, Mail } from "lucide-react";
 import ablogo from "../assets/Ablogo.png";
 import { Button } from "./ui/button";
 
-
 const Navbar = () => {
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
-  const [isHeroInView, setIsHeroInView] = useState(true);
+
+  // ✅ Default to true only if on "/" (transparent first render)
+  const [isHeroInView, setIsHeroInView] = useState(location.pathname === "/");
+
   const handleScheduleClick = () => {
     const url = (import.meta as any)?.env?.VITE_SCHEDULE_FORM_URL;
     if (url && typeof url === "string") {
@@ -16,7 +19,6 @@ const Navbar = () => {
       alert("Schedule form link not set yet.");
     }
   };
-  const location = useLocation();
 
   const isGlass = location.pathname !== "/" || !isHeroInView;
 
@@ -28,7 +30,7 @@ const Navbar = () => {
 
     const heroEl = document.getElementById("hero");
     if (!heroEl) {
-      setIsHeroInView(false);
+      setIsHeroInView(true); // fallback: stay transparent if hero not found
       return;
     }
 
@@ -172,7 +174,6 @@ const Navbar = () => {
           </div>
         )}
       </div>
-      
     </nav>
   );
 };
