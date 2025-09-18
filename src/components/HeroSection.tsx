@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import heroImage from '@/assets/WhatsApp Image 2025-08-13 at 10.12.56.jpeg';
+import heroImage from '@/assets/architecture-3.avif';
 
 const HeroSection = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -21,7 +21,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Parallax */}
       <div 
         ref={heroRef}

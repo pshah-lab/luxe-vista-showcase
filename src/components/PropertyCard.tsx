@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-import { MapPin, Bed, Bath, Square, Calendar, Star, Crown } from 'lucide-react';
+import { MapPin, Bed, Bath, Square, Calendar, Star } from 'lucide-react';
+import ablogo from '../assets/Ablogo.png';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 
@@ -84,7 +85,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
         <div className="absolute top-6 left-6 flex flex-col gap-3 z-10">
           {property.featured && (
             <Badge className="bg-luxury-gold text-luxury-charcoal shadow-glow border-0 px-4 py-2 text-sm">
-              <Crown className="w-4 h-4 mr-2" />
+              <img src={ablogo} alt="Featured" className="w-4 h-4 mr-2 inline-block" />
               Featured
             </Badge>
           )}

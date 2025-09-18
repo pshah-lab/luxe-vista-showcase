@@ -1,9 +1,10 @@
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Award, Users, Building, TrendingUp, Crown, Star } from 'lucide-react';
-import { Button } from './ui/button';
-import whatsappImage48 from '../assets/WhatsApp Image 2025-08-13 at 10.12.48.jpeg';
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Award, Users, Building, TrendingUp, Star } from "lucide-react";
+import ablogo from "../assets/Ablogo.png";
+import { Button } from "./ui/button";
+import whatsappImage48 from "../assets/bunglowView.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,7 +18,8 @@ const AboutSection = () => {
     if (!sectionRef.current) return;
 
     // Content animation
-    gsap.fromTo(contentRef.current,
+    gsap.fromTo(
+      contentRef.current,
       { opacity: 0, x: -60 },
       {
         opacity: 1,
@@ -28,13 +30,14 @@ const AboutSection = () => {
           trigger: contentRef.current,
           start: "top 80%",
           end: "bottom 20%",
-          toggleActions: "play none none reverse"
-        }
+          toggleActions: "play none none reverse",
+        },
       }
     );
 
     // Image animation
-    gsap.fromTo(imageRef.current,
+    gsap.fromTo(
+      imageRef.current,
       { opacity: 0, x: 60, scale: 0.95 },
       {
         opacity: 1,
@@ -46,16 +49,17 @@ const AboutSection = () => {
           trigger: imageRef.current,
           start: "top 80%",
           end: "bottom 20%",
-          toggleActions: "play none none reverse"
-        }
+          toggleActions: "play none none reverse",
+        },
       }
     );
 
     // Stats counter animation
-    const stats = statsRef.current?.querySelectorAll('.stat-number');
+    const stats = statsRef.current?.querySelectorAll(".stat-number");
     stats?.forEach((stat) => {
-      const finalValue = parseInt(stat.getAttribute('data-value') || '0');
-      gsap.fromTo(stat,
+      const finalValue = parseInt(stat.getAttribute("data-value") || "0");
+      gsap.fromTo(
+        stat,
         { textContent: 0 },
         {
           textContent: finalValue,
@@ -65,99 +69,125 @@ const AboutSection = () => {
           scrollTrigger: {
             trigger: stat,
             start: "top 85%",
-            toggleActions: "play none none none"
-          }
+            toggleActions: "play none none none",
+          },
         }
       );
     });
   }, []);
 
   const stats = [
-    { icon: Building, value: 25, label: "Luxury Bungalows", suffix: "+", color: "luxury-gold" },
-    { icon: Users, value: 2500, label: "Happy Families", suffix: "+", color: "luxury-amber" },
-    { icon: Award, value: 15, label: "Years Excellence", suffix: "", color: "luxury-burgundy" },
-    { icon: TrendingUp, value: 98, label: "Customer Satisfaction", suffix: "%", color: "luxury-gold" }
+    {
+      icon: Building,
+      value: 25,
+      label: "Luxury Bungalows",
+      suffix: "+",
+      color: "luxury-gold",
+    },
+    {
+      icon: Users,
+      value: 2500,
+      label: "Happy Families",
+      suffix: "+",
+      color: "luxury-amber",
+    },
+    {
+      icon: Award,
+      value: 15,
+      label: "Years Excellence",
+      suffix: "",
+      color: "luxury-burgundy",
+    },
+    {
+      icon: TrendingUp,
+      value: 98,
+      label: "Customer Satisfaction",
+      suffix: "%",
+      color: "luxury-gold",
+    },
   ];
 
   return (
-    <section ref={sectionRef} className="luxury-section bg-gradient-to-br from-luxury-cream/20 via-background to-luxury-cream/10">
+    <section
+      id="about"
+      ref={sectionRef}
+      className="luxury-section bg-gradient-to-br from-luxury-cream/20 via-background to-luxury-cream/10"
+    >
       <div className="luxury-container">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Content */}
           <div ref={contentRef}>
             <div className="inline-flex items-center gap-2 bg-luxury-gold/10 text-luxury-gold px-4 py-2 rounded-full mb-6 border border-luxury-gold/20">
-              <Crown className="w-5 h-5" />
+              <img src={ablogo} alt="Ablogo" className="w-5 h-5" />
               <span className="text-sm font-medium">Premium Developer</span>
             </div>
-            
+
             <h2 className="text-4xl md:text-5xl font-bold font-display text-foreground mb-6">
-              Crafting Luxury 5 BHK
-              <span className="block text-luxury-gold">Bungalows Since 2009</span>
+              Pure Nature, Fresh Living.
+              <span className="block text-luxury-gold">
+                Luxury 5 BHK Bungalows.
+              </span>
             </h2>
-            
+
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-              With over a decade of excellence in luxury real estate development, 
-              we've redefined urban living through innovative architecture, 
-              premium amenities, and uncompromising quality. Our 5 BHK bungalows 
-              represent the pinnacle of luxury living.
+              With over a decade of excellence in luxury real estate
+              development, we've redefined urban living through innovative
+              architecture, premium amenities, and uncompromising quality. Our 5
+              BHK bungalows represent the pinnacle of luxury living.
             </p>
 
             <div className="space-y-4 mb-8">
               <div className="flex items-start space-x-3">
-                <div className="w-2 h-2 bg-luxury-gold rounded-full mt-3" />
+                <div className="w-2 h-2 bg-luxury-burgundy rounded-full mt-3" />
                 <p className="text-muted-foreground">
-                  Award-winning architectural designs that blend modern aesthetics with functional excellence
-                </p>
-              </div>
-              <div className="flex items-start space-x-3">
-                <div className="w-2 h-2 bg-luxury-amber rounded-full mt-3" />
-                <p className="text-muted-foreground">
-                  Sustainable construction practices with premium materials and finishes
+                  Award-winning architectural designs that blend modern
+                  aesthetics with functional excellence
                 </p>
               </div>
               <div className="flex items-start space-x-3">
                 <div className="w-2 h-2 bg-luxury-burgundy rounded-full mt-3" />
                 <p className="text-muted-foreground">
-                  Strategic locations with excellent connectivity and growth potential
+                  Sustainable construction practices with premium materials and
+                  finishes
+                </p>
+              </div>
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 bg-luxury-burgundy rounded-full mt-3" />
+                <p className="text-muted-foreground">
+                  Strategic locations with excellent connectivity and growth
+                  potential
                 </p>
               </div>
             </div>
 
-            <Button size="lg" className="btn-luxury-primary">
-              Learn More About Us
-            </Button>
+           
           </div>
 
           {/* Image */}
           <div ref={imageRef} className="relative">
             <div className="card-luxury rounded-3xl p-8">
               <div className="aspect-square bg-luxury-cream rounded-2xl flex items-center justify-center mb-8 overflow-hidden border border-luxury-gold/20">
-                <img 
+                <img
                   src={whatsappImage48}
                   alt="Luxury 5 BHK Bungalow Showcase"
                   className="w-full h-full object-cover rounded-2xl"
                 />
               </div>
-              
-              {/* Stats */}
-              <div ref={statsRef} className="grid grid-cols-2 gap-6">
-                {stats.map((stat, index) => (
-                  <div key={index} className="text-center">
-                    <div className={`flex items-center justify-center w-12 h-12 bg-${stat.color}/10 rounded-xl mb-3 mx-auto border border-${stat.color}/20`}>
-                      <stat.icon className={`w-6 h-6 text-${stat.color}`} />
-                    </div>
-                    <div className="text-2xl font-bold text-luxury-charcoal">
-                      <span 
-                        className="stat-number" 
-                        data-value={stat.value}
-                      >
-                        0
-                      </span>
-                      {stat.suffix}
-                    </div>
-                    <p className="text-sm text-luxury-burgundy font-medium">{stat.label}</p>
-                  </div>
-                ))}
+
+              {/* Description */}
+              <div className="relative mt-4">
+                <div className="bg-gradient-to-r from-luxury-cream/50 to-white p-6 rounded-2xl border-l-4 border-luxury-gold shadow-md">
+                  <p className="text-lg md:text-xl italic font-serif text-gray-700 leading-relaxed">
+                    “Abhinandan Mountreea stands as a haven where nature and
+                    luxury unite, with every crafted detail embraced by a lush
+                    green cover. Blending elegance with tranquility, it offers
+                    thoughtfully designed homes that let you experience the
+                    harmony of both worlds — where nature preserves its purity,
+                    originality, and freshness. Every corner of the home
+                    reflects a renewed perspective, offering a refreshing
+                    outlook on living.”
+                  </p>
+                </div>
               </div>
             </div>
           </div>

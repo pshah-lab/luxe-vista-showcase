@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Crown, Star, Building, Award } from 'lucide-react';
+import { Star, Building, Award } from 'lucide-react';
+import ablogo from '../assets/Ablogo.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -51,65 +52,51 @@ const LuxuryColorShowcase = () => {
     );
   }, []);
 
-  const luxuryColors = [
+  const colors = [
     {
       name: "Luxury Gold",
       class: "bg-luxury-gold",
       textClass: "text-luxury-charcoal",
       description: "Primary luxury accent for highlights and CTAs",
-      icon: Crown
-    },
-    {
-      name: "Luxury Burgundy",
-      class: "bg-luxury-burgundy",
-      textClass: "text-white",
-      description: "Rich secondary color for premium elements",
-      icon: Star
-    },
-    {
-      name: "Luxury Amber",
-      class: "bg-luxury-amber",
-      textClass: "text-luxury-charcoal",
-      description: "Warm accent for interactive elements",
-      icon: Award
-    },
-    {
-      name: "Luxury Cream",
-      class: "bg-luxury-cream",
-      textClass: "text-luxury-charcoal",
-      description: "Soft background for content areas",
-      icon: Building
+      icon: ablogo
     },
     {
       name: "Luxury Charcoal",
       class: "bg-luxury-charcoal",
       textClass: "text-white",
       description: "Deep text color for maximum readability",
-      icon: Crown
+      icon: ablogo
     },
     {
-      name: "Luxury Bronze",
-      class: "bg-luxury-bronze",
+      name: "Luxury Burgundy",
+      class: "bg-luxury-burgundy",
       textClass: "text-white",
-      description: "Earthy tone for natural elements",
-      icon: Star
+      description: "Rich secondary accent for elegance and depth",
+      icon: Award
     },
     {
-      name: "Luxury Silver",
-      class: "bg-luxury-silver",
+      name: "Luxury Cream",
+      class: "bg-luxury-cream",
       textClass: "text-luxury-charcoal",
-      description: "Metallic accent for premium touches",
-      icon: Award
+      description: "Soft background for subtle sophistication",
+      icon: Building
+    },
+    {
+      name: "Luxury Amber",
+      class: "bg-luxury-amber",
+      textClass: "text-luxury-charcoal",
+      description: "Warm accent for inviting elements and warmth",
+      icon: Star
     }
   ];
 
   return (
-    <section ref={sectionRef} className="luxury-section bg-gradient-to-br from-luxury-cream/30 via-background to-luxury-cream/20">
+    <section ref={sectionRef} className="luxury-section bg-gradient-to-br from-white via-luxury-cream/30 to-white py-20">
       <div className="luxury-container">
         {/* Section Header */}
         <div ref={titleRef} className="text-center mb-16">
           <div className="inline-flex items-center gap-2 bg-luxury-gold/10 text-luxury-gold px-4 py-2 rounded-full mb-4 border border-luxury-gold/20">
-            <Crown className="w-5 h-5" />
+            <img src={ablogo} alt="Ablogo" className="w-5 h-5" />
             <span className="text-sm font-medium">Design System</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold font-display text-foreground mb-6">
@@ -123,10 +110,14 @@ const LuxuryColorShowcase = () => {
 
         {/* Color Showcase */}
         <div ref={colorsRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {luxuryColors.map((color, index) => (
+          {colors.map((color, index) => (
             <div key={index} className="card-luxury group">
               <div className={`${color.class} ${color.textClass} rounded-xl p-6 mb-4 flex items-center justify-center`}>
-                <color.icon className="w-12 h-12" />
+                {color.icon === ablogo ? (
+                  <img src={color.icon} alt={color.name} className="w-12 h-12" />
+                ) : (
+                  <color.icon className="w-12 h-12" />
+                )}
               </div>
               <h3 className="text-xl font-bold text-luxury-charcoal mb-2">{color.name}</h3>
               <p className="text-luxury-burgundy text-sm leading-relaxed">{color.description}</p>
@@ -150,7 +141,7 @@ const LuxuryColorShowcase = () => {
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             <div className="text-center">
               <div className="bg-luxury-gold/20 rounded-xl p-4 mb-3 border border-luxury-gold/30">
-                <Crown className="w-8 h-8 text-luxury-gold mx-auto" />
+                <img src={ablogo} alt="Crown" className="w-8 h-8 text-luxury-gold mx-auto" />
               </div>
               <p className="text-sm text-luxury-charcoal">Primary Buttons & CTAs</p>
             </div>

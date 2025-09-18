@@ -1,12 +1,13 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight, Star, Crown } from 'lucide-react';
+import { ArrowRight, Star } from 'lucide-react';
+import ablogo from '../assets/Ablogo.png';
 import { Button } from './ui/button';
 import PropertyCard from './PropertyCard';
-import property1 from '@/assets/property-1.jpg';
-import property2 from '@/assets/property-2.jpg';
-import property3 from '@/assets/property-3.jpg';
+import property1 from '@/assets/JAINAM SHAH_Living_01.webp';
+import property2 from '@/assets/JAINAM SHAH_Living_02-1.webp';
+import property3 from '@/assets/JAINAM SHAH_Theater.webp';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -107,7 +108,7 @@ const FeaturedProjects = () => {
         {/* Section Header */}
         <div ref={titleRef} className="text-center mb-20">
           <div className="inline-flex items-center gap-2 bg-luxury-gold/10 text-luxury-gold px-4 py-2 rounded-full mb-4 border border-luxury-gold/20">
-            <Crown className="w-5 h-5" />
+            <img src={ablogo} alt="Ablogo" className="w-5 h-5" />
             <span className="text-sm font-medium">Premium Selection</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold font-display text-foreground mb-6">

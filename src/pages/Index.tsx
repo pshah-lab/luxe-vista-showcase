@@ -13,8 +13,6 @@ const Index = () => {
       <Navbar />
       <main>
         <HeroSection />
-        {/* <FeaturedProjects /> */}
-        {/* <LuxuryColorShowcase /> */}
         <TechMarquee/>
         <AboutSection />
         <GallerySection />

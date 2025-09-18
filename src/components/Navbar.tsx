@@ -1,34 +1,59 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Phone, Mail, Crown } from "lucide-react";
+import { Menu, X, Phone, Mail } from "lucide-react";
+import ablogo from "../assets/Ablogo.png";
 import { Button } from "./ui/button";
+import ContactFormModal from "./ContactFormModal";
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [isHeroInView, setIsHeroInView] = useState(true);
+  const [contactOpen, setContactOpen] = useState(false);
   const location = useLocation();
 
+  const isGlass = location.pathname !== "/" || !isHeroInView;
+
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    if (location.pathname !== "/") {
+      setIsHeroInView(false); // always glass for non-home
+      return;
+    }
+
+    const heroEl = document.getElementById("hero");
+    if (!heroEl) {
+      setIsHeroInView(false);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsHeroInView(entry.isIntersecting),
+      { rootMargin: "-80px 0px 0px 0px", threshold: 0.01 }
+    );
+
+    observer.observe(heroEl);
+    return () => observer.disconnect();
+  }, [location.pathname]);
 
   const navItems = [
-    { name: "Home", path: "/" },
-    { name: "Luxury Bungalows", path: "/projects" },
-    { name: "About", path: "/about" },
-    { name: "Contact", path: "/contact" },
+    { name: "Home", target: "hero" },
+    { name: "About", target: "about" },
   ];
 
-  const isActive = (path: string) => location.pathname === path;
+  const scrollTo = (id: string) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const navbar = document.getElementById("site-navbar");
+    const navHeight = navbar ? navbar.offsetHeight : 0;
+    const top = el.getBoundingClientRect().top + window.scrollY - navHeight;
+    window.scrollTo({ top, behavior: "smooth" });
+  };
 
   return (
-    <nav id="site-navbar"
+    <nav
+      id="site-navbar"
       className={`fixed top-0 w-full z-50 transition-luxury ${
-        scrolled
+        isGlass
           ? "bg-background/95 backdrop-blur-md shadow-premium border-b border-luxury-gold/20"
           : "bg-transparent"
       }`}
@@ -37,41 +62,50 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-luxury-gold rounded-lg flex items-center justify-center shadow-glow">
-              <Crown className="w-6 h-6 text-luxury-charcoal" />
+            <div className="w-15 h-15 bg-transparent rounded-lg flex items-center justify-center">
+              <img
+                src={ablogo}
+                alt="ABHINANDAN MOUNTREEA Logo"
+                className="w-12 h-12 text-luxury-charcoal rounded-lg"
+              />
             </div>
-            <span className="font-display font-bold text-xl text-luxury-charcoal">
-              ABHINANDAN MOUNTREEA
+            <span
+              className={`font-display font-bold text-xl underline underline-offset-4 ${
+                isGlass ? "text-black" : "text-white"
+              }`}
+            >
+              ABHINANDAN
             </span>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <Link
+              <button
                 key={item.name}
-                to={item.path}
+                onClick={() => scrollTo(item.target)}
                 className={`text-sm font-medium transition-smooth relative ${
-                  isActive(item.path)
-                    ? "text-luxury-gold"
-                    : "text-luxury-charcoal hover:text-luxury-gold"
+                  isGlass
+                    ? "text-black hover:text-luxury-gold"
+                    : "text-white hover:text-luxury-gold"
                 }`}
               >
                 {item.name}
-                {isActive(item.path) && (
-                  <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-luxury-gold rounded-full" />
-                )}
-              </Link>
+              </button>
             ))}
           </div>
 
           {/* Contact Info & CTA */}
           <div className="hidden lg:flex items-center space-x-4">
-            <div className="flex items-center space-x-2 text-sm text-luxury-burgundy">
-              <Phone className="w-4 h-4" />
-              <span>+91 98765 43210</span>
-            </div>
-            <Button size="sm" className="btn-luxury-primary">
+            <Button
+              size="sm"
+              className={`${
+                isGlass
+                  ? "bg-black text-white hover:bg-transparent hover:text-black border border-black"
+                  : "bg-white text-black hover:bg-transparent hover:text-white border border-white"
+              }`}
+              onClick={() => setContactOpen(true)}
+            >
               Schedule Visit
             </Button>
           </div>
@@ -79,7 +113,11 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-luxury-charcoal hover:text-luxury-gold transition-smooth"
+            className={`md:hidden p-2 transition-smooth ${
+              isGlass
+                ? "text-black hover:text-luxury-gold"
+                : "text-white hover:text-luxury-gold"
+            }`}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -90,18 +128,20 @@ const Navbar = () => {
           <div className="md:hidden bg-background/95 backdrop-blur-md border-t border-luxury-gold/20 shadow-premium">
             <div className="px-6 py-4 space-y-4">
               {navItems.map((item) => (
-                <Link
+                <button
                   key={item.name}
-                  to={item.path}
-                  onClick={() => setIsOpen(false)}
-                  className={`block text-base font-medium transition-smooth ${
-                    isActive(item.path)
-                      ? "text-luxury-gold"
-                      : "text-luxury-charcoal hover:text-luxury-gold"
+                  onClick={() => {
+                    setIsOpen(false);
+                    scrollTo(item.target);
+                  }}
+                  className={`block text-left w-full text-base font-medium transition-smooth ${
+                    isGlass
+                      ? "text-black hover:text-luxury-gold"
+                      : "text-white hover:text-luxury-gold"
                   }`}
                 >
                   {item.name}
-                </Link>
+                </button>
               ))}
               <div className="pt-4 border-t border-luxury-gold/20 space-y-3">
                 <div className="flex items-center space-x-2 text-sm text-luxury-burgundy">
@@ -112,12 +152,21 @@ const Navbar = () => {
                   <Mail className="w-4 h-4" />
                   <span>info@abhinandanmountria.com</span>
                 </div>
-                <Button className="w-full btn-luxury-primary">Schedule Visit</Button>
+                <Button
+                  className="w-full btn-luxury-primary"
+                  onClick={() => {
+                    setIsOpen(false);
+                    setContactOpen(true);
+                  }}
+                >
+                  Schedule Visit
+                </Button>
               </div>
             </div>
           </div>
         )}
       </div>
+      <ContactFormModal open={contactOpen} setOpen={setContactOpen} />
     </nav>
   );
 };
