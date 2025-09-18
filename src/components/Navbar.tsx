@@ -3,13 +3,19 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import ablogo from "../assets/Ablogo.png";
 import { Button } from "./ui/button";
-import ContactFormModal from "./ContactFormModal";
 
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isHeroInView, setIsHeroInView] = useState(true);
-  const [contactOpen, setContactOpen] = useState(false);
+  const handleScheduleClick = () => {
+    const url = (import.meta as any)?.env?.VITE_SCHEDULE_FORM_URL;
+    if (url && typeof url === "string") {
+      window.open(url, "_blank", "noopener,noreferrer");
+    } else {
+      alert("Schedule form link not set yet.");
+    }
+  };
   const location = useLocation();
 
   const isGlass = location.pathname !== "/" || !isHeroInView;
@@ -104,7 +110,7 @@ const Navbar = () => {
                   ? "bg-black text-white hover:bg-transparent hover:text-black border border-black"
                   : "bg-white text-black hover:bg-transparent hover:text-white border border-white"
               }`}
-              onClick={() => setContactOpen(true)}
+              onClick={handleScheduleClick}
             >
               Schedule Visit
             </Button>
@@ -156,7 +162,7 @@ const Navbar = () => {
                   className="w-full btn-luxury-primary"
                   onClick={() => {
                     setIsOpen(false);
-                    setContactOpen(true);
+                    handleScheduleClick();
                   }}
                 >
                   Schedule Visit
@@ -166,7 +172,7 @@ const Navbar = () => {
           </div>
         )}
       </div>
-      <ContactFormModal open={contactOpen} setOpen={setContactOpen} />
+      
     </nav>
   );
 };

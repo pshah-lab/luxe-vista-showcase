@@ -1,4 +1,5 @@
 import { Suspense, lazy } from 'react';
+import Ablogo from '@/assets/Ablogo.png';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
@@ -14,7 +15,13 @@ const Index = () => {
     <div className="min-h-screen">
       <Navbar />
       <main>
-        <Suspense fallback={<div style={{ padding: 24 }}>Loading...</div>}>
+        <Suspense
+          fallback={
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '60vh' }}>
+              <img src={Ablogo} alt="Abhinandan logo loading" style={{ width: 140, height: 140, opacity: 1, borderRadius: 16 }} />
+            </div>
+          }
+        >
           <HeroSection />
           <TechMarquee/>
           <AboutSection />
