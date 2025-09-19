@@ -12,8 +12,8 @@ const Navbar = () => {
   const [isHeroInView, setIsHeroInView] = useState(location.pathname === "/");
 
   const handleScheduleClick = () => {
-    const url = (import.meta as any)?.env?.VITE_SCHEDULE_FORM_URL;
-    if (url && typeof url === "string") {
+    const url = import.meta.env.VITE_SCHEDULE_FORM_URL;
+    if (url) {
       window.open(url, "_blank", "noopener,noreferrer");
     } else {
       alert("Schedule form link not set yet.");
