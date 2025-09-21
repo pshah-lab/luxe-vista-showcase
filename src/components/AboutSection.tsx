@@ -119,31 +119,25 @@ const AboutSection = () => {
           <div ref={contentRef}>
             <div className="inline-flex items-center gap-2 bg-luxury-gold/10 text-luxury-gold px-4 py-2 rounded-full mb-6 border border-luxury-gold/20">
               <img src={ablogo} alt="Ablogo" className="w-5 h-5" />
-              <span className="text-sm font-medium">Premium Developer</span>
+              <span className="text-lg font-medium">About Us</span>
             </div>
 
             <h2 className="text-4xl md:text-5xl font-bold font-display text-foreground mb-6">
-              Pure Nature, Fresh Living.
+              Pure Nature, Fresh Living
               <span className="block text-luxury-gold">
                 Luxury 5 BHK Bungalows.
               </span>
             </h2>
 
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-              With over a decade of excellence in luxury real estate
-              development, we've redefined urban living through innovative
-              architecture, premium amenities, and uncompromising quality. Our 5
-              BHK bungalows represent the pinnacle of luxury living.
+              Luxury real estate development, we've redefined urban living
+              through innovative architecture, premium amenities, and
+              uncompromising quality. Our 5 BHK bungalows represent the pinnacle
+              of luxury living.
             </p>
 
             <div className="space-y-4 mb-8">
-              <div className="flex items-start space-x-3">
-                <div className="w-2 h-2 bg-luxury-burgundy rounded-full mt-3" />
-                <p className="text-muted-foreground">
-                  Award-winning architectural designs that blend modern
-                  aesthetics with functional excellence
-                </p>
-              </div>
+             
               <div className="flex items-start space-x-3">
                 <div className="w-2 h-2 bg-luxury-burgundy rounded-full mt-3" />
                 <p className="text-muted-foreground">
@@ -159,8 +153,6 @@ const AboutSection = () => {
                 </p>
               </div>
             </div>
-
-           
           </div>
 
           {/* Image */}

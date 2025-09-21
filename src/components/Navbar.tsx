@@ -154,11 +154,11 @@ const Navbar = () => {
               <div className="pt-4 border-t border-luxury-gold/20 space-y-3">
                 <div className="flex items-center space-x-2 text-sm text-luxury-burgundy">
                   <Phone className="w-4 h-4" />
-                  <span>+91 98765 43210</span>
+                  <span>+91 93277 44929</span>
                 </div>
                 <div className="flex items-center space-x-2 text-sm text-luxury-burgundy">
                   <Mail className="w-4 h-4" />
-                  <span>info@abhinandanmountria.com</span>
+                  <span>abhidevelopers981@gmail.com</span>
                 </div>
                 <Button
                   className="w-full btn-luxury-primary"

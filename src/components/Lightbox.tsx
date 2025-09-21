@@ -6,14 +6,8 @@ import { createPortal } from "react-dom";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface LightboxImageLike {
-  title: string;
-  description: string;
+  src: string;
   category: string;
-  avif?: string;
-  webp?: string;
-  jpg?: string;
-  png?: string;
-  fallback?: string;
 }
 
 interface LightboxProps {
@@ -26,8 +20,8 @@ interface LightboxProps {
 
 const Lightbox = ({ images, selectedIndex, onClose, onPrev, onNext }: LightboxProps) => {
   const image = images[selectedIndex];
-  const resolvedSrc = image.jpg || image.png || image.webp || image.avif || image.fallback || "";
-  const resolvedAlt = image.title || "image";
+  const resolvedSrc = image.src;
+  const resolvedAlt = image.category;
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -72,8 +66,8 @@ const Lightbox = ({ images, selectedIndex, onClose, onPrev, onNext }: LightboxPr
           className="max-w-full max-h-[70vh] object-contain rounded-lg shadow-2xl transition-transform duration-500 animate-zoomIn"
         />
         <div className="mt-6 text-center text-white space-y-2">
-          <h3 className="text-2xl font-bold">{image.title}</h3>
-          <p className="text-white/80">{image.description}</p>
+          <h3 className="text-2xl font-bold">{image.category}</h3>
+          <p className="text-white/80">{image.category} View</p>
           <span className="inline-block bg-blue-600 px-3 py-1 text-xs rounded-full">
             {image.category}
           </span>

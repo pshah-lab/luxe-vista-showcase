@@ -1,0 +1,48 @@
+// src/data/galleryData.ts
+export const galleryImages = [
+  { src: "/src/assets/aerial-view-layout.webp", category: "Aerial View" },
+  { src: "/src/assets/architecture-1.webp", category: "Architecture" },
+  { src: "/src/assets/architecture-2.webp", category: "Architecture" },
+  { src: "/src/assets/architecture-3.webp", category: "Architecture" },
+  { src: "/src/assets/architecture-4.webp", category: "Architecture" },
+  { src: "/src/assets/banquet-hall-amenities.webp", category: "Entertainment" },
+  { src: "/src/assets/bedroom-interior.webp", category: "Bedroom" },
+  { src: "/src/assets/cafe-common-area.webp", category: "Dining" },
+  { src: "/src/assets/courts-recreation.webp", category: "Recreation" },
+  { src: "/src/assets/entryways-1.webp", category: "Entryways" },
+  { src: "/src/assets/entryways-main-gate.webp", category: "Entryways" },
+  { src: "/src/assets/entryways-main-gate-2.webp", category: "Entryways" },
+  { src: "/src/assets/exterior-main-entrance.webp", category: "Exterior" },
+  { src: "/src/assets/exterior-main-entrance-2.webp", category: "Exterior" },
+  { src: "/src/assets/exterior-main-entrance-3.webp", category: "Exterior" },
+  { src: "/src/assets/exterior-villas.webp", category: "Bungalow" },
+  { src: "/src/assets/exterior-villas-2.webp", category: "Bungalow" },
+  { src: "/src/assets/game-room-recreation.webp", category: "Recreation" },
+  { src: "/src/assets/game-room-recreation-2.webp", category: "Recreation" },
+  { src: "/src/assets/gardens-pathways-1.webp", category: "Gardens" },
+  { src: "/src/assets/gardens-pathways-2.webp", category: "Gardens" },
+  { src: "/src/assets/gym-amenities.webp", category: "Amenities" },
+  { src: "/src/assets/home-theater-amenities.webp", category: "Entertainment" },
+  { src: "/src/assets/home-theater-amenities-2.webp", category: "Entertainment" },
+  { src: "/src/assets/lobby-common-area.webp", category: "Common Areas" },
+  { src: "/src/assets/lobby-common-area-2.webp", category: "Common Areas" },
+  { src: "/src/assets/playground-landscapes.webp", category: "Recreation" },
+  { src: "/src/assets/pool-wellness.webp", category: "Pool" }
+];
+
+export const categories = [
+  "All",
+  "Aerial View",
+  "Architecture", 
+  "Balcony",
+  "Bedroom",
+  "Bungalow",
+  "Common Areas",
+  "Dining",
+  "Entertainment",
+  "Entryways",
+  "Exterior",
+  "Gardens",
+  "Pool",
+  "Recreation"
+];
