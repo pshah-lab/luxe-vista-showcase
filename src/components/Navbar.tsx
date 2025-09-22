@@ -145,7 +145,7 @@ const Navbar = () => {
                   className={`block text-left w-full text-base font-medium transition-smooth ${
                     isGlass
                       ? "text-black hover:text-luxury-gold"
-                      : "text-white hover:text-luxury-gold"
+                      : "text-luxury-charcoal hover:text-luxury-gold"
                   }`}
                 >
                   {item.name}
