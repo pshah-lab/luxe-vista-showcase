@@ -5,7 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Search } from "lucide-react";
 import Lightbox from "./Lightbox";
-import { galleryImages, categories } from "./DataGallery"; // 👈 import your manual data
+import { galleryImages, categories } from "./DataGallery.ts"; // 👈 import your manual data
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -93,7 +93,7 @@ const GallerySection = ({ fullPage = false }: GallerySectionProps) => {
   // Lightbox handlers
   const openLightbox = (index: number) => setSelectedIndex(index);
   const closeLightbox = () => setSelectedIndex(null);
-  const prevImage = () => setSelectedIndex((i) => (i && i > 0 ? i - 1 : i));
+  const prevImage = () => setSelectedIndex((i) => (i !== null && i > 0 ? i - 1 : i));
   const nextImage = () => setSelectedIndex((i) => (i !== null && i < filteredImages.length - 1 ? i + 1 : i));
 
   return (
