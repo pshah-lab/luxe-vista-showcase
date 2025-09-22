@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { MapPin, Bed, Bath, Square, Calendar, Star } from 'lucide-react';
-import ablogo from '../assets/Ablogo.png';
+const ablogo = '/assets/Ablogo.png';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 

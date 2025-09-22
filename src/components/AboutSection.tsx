@@ -2,9 +2,9 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Award, Users, Building, TrendingUp, Star } from "lucide-react";
-import ablogo from "../assets/Ablogo.png";
+const ablogo = "/assets/Ablogo.png";
 import { Button } from "./ui/button";
-import whatsappImage48 from "../assets/bunglowView.jpg";
+const whatsappImage48 = "/assets/bunglowView.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 

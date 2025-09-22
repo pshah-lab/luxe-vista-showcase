@@ -1,5 +1,5 @@
 // components/LogoLoader.tsx
-import Ablogo from "@/assets/ABloading.png";
+const Ablogo = "/assets/ABloading.png";
 
 const LogoLoader = () => {
   return (

@@ -2,19 +2,7 @@
 
 import { useEffect } from "react";
 import gsap from "gsap";
-
-// Build image list from assets (exclude Ablogo), use only WebP
-const modules = import.meta.glob("../assets/*.webp", {
-  eager: true,
-  query: "?url",
-  import: "default",
-}) as Record<string, string>;
-
-type MarqueeImage = {
-  title: string;
-  category: string;
-  src: string;
-};
+import { galleryImages } from "./DataGallery";
 
 function titleCase(s: string) {
   return s
@@ -24,22 +12,11 @@ function titleCase(s: string) {
     .join(" ");
 }
 
-function buildImages(): MarqueeImage[] {
-  const images: MarqueeImage[] = [];
-  for (const p in modules) {
-    const file = p.split("/").pop() || "";
-    if (/ablogo/i.test(file)) continue;
-    const base = file.replace(/\.webp$/i, "");
-    images.push({
-      title: titleCase(base),
-      category: titleCase(base.split("-")[0] || "Gallery"),
-      src: modules[p],
-    });
-  }
-  return images;
-}
-
-const whatsappImages = buildImages();
+const whatsappImages = galleryImages.map((g) => ({
+  title: titleCase(g.src.split("/").pop() || "Image"),
+  category: g.category,
+  src: g.src,
+}));
 
 export default function TechMarquee() {
   useEffect(() => {

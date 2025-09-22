@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
-import ablogo from "../assets/ABloading.png";
+const ablogo = "/assets/ABloading.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

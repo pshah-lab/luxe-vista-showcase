@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Star, Building, Award } from 'lucide-react';
-import ablogo from '../assets/Ablogo.png';
+const ablogo = '/assets/Ablogo.png';
 
 gsap.registerPlugin(ScrollTrigger);
 

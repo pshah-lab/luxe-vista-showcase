@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import heroImage from '@/assets/architecture-3.avif';
+const heroImage = '/assets/architecture-3.webp';
 
 const HeroSection = () => {
   const heroRef = useRef<HTMLDivElement>(null);
