@@ -8,7 +8,6 @@ const Footer = () => {
   const navItems = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
-    { name: "Contact", path: "/contact" },
   ];
 
   return (
@@ -54,8 +53,8 @@ const Footer = () => {
               <li className="flex items-start space-x-2">
                 <MapPin className="w-4 h-4 text-primary mt-0.5" />
                 <span className="text-secondary-foreground/70">
-                  SR No: 318, Near Kamat hotel, Opp: Swaminarayan Temple,
-                  Athal, Silvassa - 396230
+                  SR No: 318, Near Kamat hotel, Opp: Swaminarayan Temple, Athal,
+                  Silvassa - 396230
                 </span>
               </li>
               <li className="flex items-center space-x-2">
