@@ -63,6 +63,7 @@ const GallerySection = ({ fullPage = false }: GallerySectionProps) => {
           start: "top 80%",
           end: "bottom 20%",
           toggleActions: "play none none reverse",
+          once: true,
         },
       }
     );
@@ -84,6 +85,7 @@ const GallerySection = ({ fullPage = false }: GallerySectionProps) => {
             start: "top 80%",
             end: "bottom 20%",
             toggleActions: "play none none reverse",
+            once: true,
           },
         }
       );
