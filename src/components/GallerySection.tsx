@@ -49,8 +49,10 @@ const GallerySection = ({ fullPage = false }: GallerySectionProps) => {
 
   useEffect(() => {
     if (!sectionRef.current) return;
-
-    gsap.fromTo(
+  
+    const triggers: ScrollTrigger[] = [];
+  
+    const sectionAnim = gsap.fromTo(
       sectionRef.current,
       { opacity: 0, y: 60 },
       {
@@ -62,15 +64,16 @@ const GallerySection = ({ fullPage = false }: GallerySectionProps) => {
           trigger: sectionRef.current,
           start: "top 80%",
           end: "bottom 20%",
-          toggleActions: "play none none reverse",
+          toggleActions: "play none none none",
           once: true,
         },
       }
     );
-
+    triggers.push(sectionAnim.scrollTrigger);
+  
     const galleryItems = galleryRef.current?.querySelectorAll(".gallery-item");
     if (galleryItems) {
-      gsap.fromTo(
+      const galleryAnim = gsap.fromTo(
         galleryItems,
         { opacity: 0, y: 40, scale: 0.95 },
         {
@@ -84,12 +87,17 @@ const GallerySection = ({ fullPage = false }: GallerySectionProps) => {
             trigger: galleryRef.current,
             start: "top 80%",
             end: "bottom 20%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
             once: true,
           },
         }
       );
+      triggers.push(galleryAnim.scrollTrigger);
     }
+  
+    return () => {
+      triggers.forEach((t) => t?.kill());
+    };
   }, [filteredImages]);
 
   // Lightbox handlers
