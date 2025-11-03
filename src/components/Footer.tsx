@@ -12,7 +12,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-secondary text-secondary-foreground border-t border-luxury-gold/20">
-      <div className="luxury-container py-10">
+      <div className="luxury-container py-10 px-3">
         {/* Top Section */}
         <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-8">
           {/* Logo & About */}
