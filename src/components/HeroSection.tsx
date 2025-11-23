@@ -1,45 +1,82 @@
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-const heroImage = '/assets/architecture-3.webp';
+import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { Volume2, VolumeX } from "lucide-react";
+
+const heroVideo =
+  "https://res.cloudinary.com/dawqqqyj7/video/upload/v1763910747/AbVideo_it22sr.mp4";
 
 const HeroSection = () => {
   const heroRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
-    // Parallax effect on scroll
+    // Required for autoplay on all browsers
+    if (videoRef.current) {
+      videoRef.current.muted = true;
+      videoRef.current.play().catch(() => {});
+    }
+
     const handleScroll = () => {
-      const scrollY = window.scrollY;
       if (heroRef.current) {
         gsap.set(heroRef.current, {
-          transform: `translateY(${scrollY * 0.5}px)`
+          transform: `translateY(${window.scrollY * 0.5}px)`,
         });
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const toggleMute = () => {
+    if (!videoRef.current) return;
+    const newState = !isMuted;
+    videoRef.current.muted = newState;
+    setIsMuted(newState);
+  };
+
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Parallax */}
-      <div 
-        ref={heroRef}
-        className="absolute inset-0 -z-10"
-      >
-        <img
-          src={heroImage}
-          alt="Luxury 5 BHK Bungalow"
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+    >
+      {/* Background Video */}
+      <div ref={heroRef} className="absolute inset-0 -z-10 overflow-hidden">
+        <video
+          ref={videoRef}
+          src={heroVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
           className="w-full h-full object-cover scale-110"
         />
-        {/* Enhanced overlay with luxury gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-luxury-burgundy/40 via-luxury-charcoal/30 to-luxury-gold/20" />
+
+        {/* Overlay */}
+        <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-luxury-burgundy/40 via-luxury-charcoal/30 to-luxury-gold/20" />
       </div>
 
-      {/* Content Container - Empty for now */}
-      <div className="luxury-container relative z-10">
-        {/* Content removed - keeping structure for future use */}
-      </div>
+      {/* Mute / Unmute Button */}
+      <button
+        onClick={toggleMute}
+        className="
+          absolute bottom-10 right-10 z-20
+          bg-white/30 hover:bg-white/50
+          backdrop-blur-lg
+          border border-white/40
+          shadow-lg
+          rounded-full p-3
+          transition-all
+        "
+      >
+        {isMuted ? (
+          <VolumeX className="w-6 h-6 text-white" />
+        ) : (
+          <Volume2 className="w-6 h-6 text-white" />
+        )}
+      </button>
     </section>
   );
 };
