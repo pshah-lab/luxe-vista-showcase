@@ -1,51 +1,27 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Phone, Mail } from "lucide-react";
-const ablogo = "/assets/Ablogo.png";
+import { Menu, X, Phone, Mail, ChevronDown, Target } from "lucide-react";
 import { Button } from "./ui/button";
+
+const ablogo = "/assets/Ablogo.png";
+const whatsappIcon = "/assets/whatsapp.png";
 
 const Navbar = () => {
   const location = useLocation();
+
   const [isOpen, setIsOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // ✅ Default to true only if on "/" (transparent first render)
+  // Detect if hero is visible (for transparent navbar)
   const [isHeroInView, setIsHeroInView] = useState(location.pathname === "/");
-
-  const handleScheduleClick = () => {
-    const url = import.meta.env.VITE_SCHEDULE_FORM_URL;
-    if (url) {
-      window.open(url, "_blank", "noopener,noreferrer");
-    } else {
-      alert("Schedule form link not set yet.");
-    }
-  };
 
   const isGlass = location.pathname !== "/" || !isHeroInView;
 
-  useEffect(() => {
-    if (location.pathname !== "/") {
-      setIsHeroInView(false); // always glass for non-home
-      return;
-    }
-
-    const heroEl = document.getElementById("hero");
-    if (!heroEl) {
-      setIsHeroInView(true); // fallback: stay transparent if hero not found
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsHeroInView(entry.isIntersecting),
-      { rootMargin: "-80px 0px 0px 0px", threshold: 0.01 }
-    );
-
-    observer.observe(heroEl);
-    return () => observer.disconnect();
-  }, [location.pathname]);
-
   const navItems = [
     { name: "Home", target: "hero" },
-    { name: "About", target: "about" },
+    {name:"About", target:"about"},
+    { name: "Gallery", target: "gallery" },
   ];
 
   const scrollTo = (id: string) => {
@@ -57,119 +33,214 @@ const Navbar = () => {
     window.scrollTo({ top, behavior: "smooth" });
   };
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node)
+      ) {
+        setContactOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Hero intersection
+  useEffect(() => {
+    if (location.pathname !== "/") {
+      setIsHeroInView(false);
+      return;
+    }
+
+    const heroEl = document.getElementById("hero");
+    if (!heroEl) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsHeroInView(entry.isIntersecting),
+      { rootMargin: "-80px 0px", threshold: 0.01 }
+    );
+
+    observer.observe(heroEl);
+    return () => observer.disconnect();
+  }, [location.pathname]);
+
   return (
     <nav
       id="site-navbar"
-      className={`fixed top-0 w-full z-50 transition-luxury ${
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isGlass
-          ? "bg-background/95 backdrop-blur-md shadow-premium border-b border-luxury-gold/20"
+          ? "bg-white/90 backdrop-blur-lg border-b border-gray-200 shadow-sm"
           : "bg-transparent"
       }`}
     >
       <div className="luxury-container">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-15 h-15 bg-transparent rounded-lg flex items-center justify-center">
-              <img
-                src={ablogo}
-                alt="ABHINANDAN MOUNTREEA Logo"
-                className="w-12 h-12 text-luxury-charcoal rounded-lg"
-              />
-            </div>
-            <span
-              className={`font-display font-bold text-xl underline underline-offset-4 ${
+          {/* LEFT: Logo + Menu Icon */}
+          <div className="flex items-center gap-4">
+            <button
+              className={`md:hidden p-2 ${
                 isGlass ? "text-black" : "text-white"
               }`}
+              onClick={() => setIsOpen(!isOpen)}
             >
-              ABHINANDAN
-            </span>
-          </Link>
+              {isOpen ? <X /> : <Menu />}
+            </button>
 
-          {/* Desktop Navigation */}
+            <Link to="/" className="flex items-center gap-2">
+              <img src={ablogo} className="w-12 h-12 text-luxury-charcoal rounded-lg" />
+              <span
+                className={`font-semibold text-xl ${
+                  isGlass ? "text-black" : "text-white"
+                }`}
+              >
+                ABHINANDAN
+              </span>
+            </Link>
+          </div>
+
+          {/* CENTER: Links */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <button
                 key={item.name}
                 onClick={() => scrollTo(item.target)}
-                className={`text-sm font-medium transition-smooth relative ${
-                  isGlass
-                    ? "text-black hover:text-luxury-gold"
-                    : "text-white hover:text-luxury-gold"
-                }`}
+                className={`text-sm font-medium ${
+                  isGlass ? "text-black" : "text-white"
+                } hover:text-luxury-gold transition-all`}
               >
                 {item.name}
               </button>
             ))}
+
+            {/* Desktop Dropdown */}
+            <div className="relative" ref={dropdownRef}>
+              <button
+                onClick={() => setContactOpen((p) => !p)}
+                className={`flex items-center gap-1 text-sm font-medium ${
+                  isGlass ? "text-black" : "text-white"
+                } hover:text-luxury-gold transition-all`}
+              >
+                Connect
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform ${
+                    contactOpen ? "rotate-180" : "rotate-0"
+                  }`}
+                />
+              </button>
+
+              {contactOpen && (
+                <div className="absolute right-0 mt-3 w-48 rounded-xl border border-gray-200 bg-white shadow-xl backdrop-blur-md p-3 space-y-3 animate-dropdown">
+                  <a
+                    href="tel:+919327744929"
+                    className="flex items-center gap-3 text-sm text-gray-700 hover:text-black transition"
+                  >
+                    <Phone className="w-4 h-4 text-luxury-gold" />
+                    <span>Call</span>
+                  </a>
+
+                  <a
+                    href="mailto:abhidevelopers981@gmail.com"
+                    className="flex items-center gap-3 text-sm text-gray-700 hover:text-black transition"
+                  >
+                    <Mail className="w-4 h-4 text-luxury-gold" />
+                    <span>Email</span>
+                  </a>
+
+                  <a
+                    href="https://wa.me/919327744929"
+                    target="_blank"
+                    className="flex items-center gap-3 text-sm text-gray-700 hover:text-black transition"
+                  >
+                    <img src={whatsappIcon} className="w-5 h-5" />
+                    <span>WhatsApp</span>
+                  </a>
+                </div>
+              )}
+            </div>
           </div>
 
-          {/* Contact Info & CTA */}
-          <div className="hidden lg:flex items-center space-x-4">
+          {/* RIGHT: CTA */}
+          <div className="hidden md:flex">
             <Button
-              size="sm"
-              className={`${
-                isGlass
-                  ? "bg-black text-white hover:bg-transparent hover:text-black border border-black"
-                  : "bg-white text-black hover:bg-transparent hover:text-white border border-white"
-              }`}
-              onClick={handleScheduleClick}
+              className="rounded-full px-6 bg-white text-black border border-gray-300 hover:bg-black hover:text-white"
+              onClick={() =>
+                window.open(import.meta.env.VITE_SCHEDULE_FORM_URL, "_blank")
+              }
             >
-              Schedule Visit
+              Enquire Now
             </Button>
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className={`md:hidden p-2 transition-smooth ${
-              isGlass
-                ? "text-black hover:text-luxury-gold"
-                : "text-white hover:text-luxury-gold"
-            }`}
-          >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* ------------------ MOBILE MENU ------------------ */}
         {isOpen && (
-          <div className="md:hidden bg-background/95 backdrop-blur-md border-t border-luxury-gold/20 shadow-premium">
+          <div className="md:hidden bg-white/95 backdrop-blur-lg shadow-md border-t border-gray-200">
             <div className="px-6 py-4 space-y-4">
               {navItems.map((item) => (
                 <button
                   key={item.name}
                   onClick={() => {
-                    setIsOpen(false);
                     scrollTo(item.target);
+                    setIsOpen(false);
                   }}
-                  className={`block text-left w-full text-base font-medium transition-smooth ${
-                    isGlass
-                      ? "text-black hover:text-luxury-gold"
-                      : "text-luxury-charcoal hover:text-luxury-gold"
-                  }`}
+                  className="block w-full text-left text-gray-700 text-base py-2 hover:text-luxury-gold"
                 >
                   {item.name}
                 </button>
               ))}
-              <div className="pt-4 border-t border-luxury-gold/20 space-y-3">
-                <div className="flex items-center space-x-2 text-sm text-luxury-burgundy">
-                  <Phone className="w-4 h-4" />
-                  <span>+91 93277 44929</span>
+
+              {/* MOBILE Dropdown */}
+              <button
+                onClick={() => setContactOpen((p) => !p)}
+                className="flex items-center justify-between w-full text-gray-700 text-base py-2"
+              >
+                <span>Connect</span>
+                <ChevronDown
+                  className={`w-5 h-5 transition-transform ${
+                    contactOpen ? "rotate-180" : "rotate-0"
+                  }`}
+                />
+              </button>
+
+              {contactOpen && (
+                <div className="ml-4 mt-2 space-y-3 border-l-2 border-gray-200 pl-4">
+                  <a
+                    href="tel:+919327744929"
+                    className="flex items-center gap-3 text-sm text-gray-700 hover:text-black"
+                  >
+                    <Phone className="w-4 h-4 text-luxury-gold" />
+                    <span>Call</span>
+                  </a>
+
+                  <a
+                    href="mailto:abhidevelopers981@gmail.com"
+                    className="flex items-center gap-3 text-sm text-gray-700 hover:text-black"
+                  >
+                    <Mail className="w-4 h-4 text-luxury-gold" />
+                    <span>Email</span>
+                  </a>
+
+                  <a
+                    href="https://wa.me/919327744929"
+                    target="_blank"
+                    className="flex items-center gap-3 text-sm text-gray-700 hover:text-black"
+                  >
+                    <img src={whatsappIcon} className="w-4 h-4" />
+                    <span>WhatsApp</span>
+                  </a>
                 </div>
-                <div className="flex items-center space-x-2 text-sm text-luxury-burgundy">
-                  <Mail className="w-4 h-4" />
-                  <span>abhidevelopers981@gmail.com</span>
-                </div>
-                <Button
-                  className="w-full btn-luxury-primary"
-                  onClick={() => {
-                    setIsOpen(false);
-                    handleScheduleClick();
-                  }}
-                >
-                  Schedule Visit
-                </Button>
-              </div>
+              )}
+
+              <Button
+                className="w-full rounded-full mt-4 border border-black text-black hover:bg-black hover:text-white"
+                onClick={() =>
+                  window.open(import.meta.env.VITE_SCHEDULE_FORM_URL, "_blank")
+                }
+              >
+                Enquire Now
+              </Button>
             </div>
           </div>
         )}

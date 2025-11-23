@@ -58,14 +58,21 @@ export default function TechMarquee() {
       id="tech"
       className="overflow-hidden w-full bg-gradient-to-r from-slate-50 via-white to-slate-50 py-12"
     >
-      <header className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-gray-800 mb-2">
-          Our Property Showcase
-        </h2>
-        <p className="text-gray-600 text-lg">
-          Discover our exclusive collection of premium properties
-        </p>
-      </header>
+     <header className="text-center mb-16">
+  {/* Soft Gold Accent */}
+  <div className="flex justify-center mb-4">
+    <span className="block w-20 h-1 bg-luxury-gold rounded-full"></span>
+  </div>
+
+  <h2 className="text-4xl md:text-5xl font-display font-bold text-gray-900 tracking-tight mb-4">
+    Our Property Showcase
+  </h2>
+
+  <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+    Discover our exclusive collection of premium properties designed with
+    sophistication, comfort, and timeless architecture.
+  </p>
+</header>
 
       {/* GPU-optimized marquee */}
       <div
