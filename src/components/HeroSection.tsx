@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import { Volume2, VolumeX } from "lucide-react";
+import { Volume2, VolumeX, ChevronDown } from "lucide-react";
 
 const heroVideo =
   "https://res.cloudinary.com/dawqqqyj7/video/upload/v1763910747/AbVideo_it22sr.mp4";
@@ -77,6 +77,16 @@ const HeroSection = () => {
           <Volume2 className="w-6 h-6 text-white" />
         )}
       </button>
+
+      {/* Scroll Down Indicator */}
+      <div
+        className="absolute bottom-6 left-1/2 transform -translate-x-1/2 
+             flex flex-col items-center space-y-1 
+             text-white/70 hover:text-white transition-colors z-20"
+      >
+        <span className="text-sm font-medium tracking-wide">Scroll Down</span>
+        <ChevronDown className="h-6 w-6 animate-bounce" />
+      </div>
     </section>
   );
 };
